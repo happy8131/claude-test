@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>프도 | 프론트엔드 개발자</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .typing-cursor::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    .hero-bg {
+      background: linear-gradient(135deg, #1e1b4b 0%, #312e81 30%, #4338ca 60%, #6366f1 100%);
+    }
+  </style>
+</head>
+<body class="font-sans text-gray-800 bg-white">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#hero" class="text-xl font-bold text-white tracking-tight">프도</a>
+      <!-- Desktop Menu -->
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <li><a href="#about" class="nav-link text-white/80 hover:text-white transition-colors">소개</a></li>
+        <li><a href="#skills" class="nav-link text-white/80 hover:text-white transition-colors">기술 스택</a></li>
+        <li><a href="#projects" class="nav-link text-white/80 hover:text-white transition-colors">프로젝트</a></li>
+        <li><a href="#contact" class="nav-link text-white/80 hover:text-white transition-colors">연락처</a></li>
+      </ul>
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden text-white focus:outline-none" aria-label="메뉴 열기">
+        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-indigo-900/95 backdrop-blur-sm">
+      <ul class="flex flex-col items-center gap-4 py-6 text-sm font-medium">
+        <li><a href="#about" class="mobile-link text-white/80 hover:text-white transition-colors">소개</a></li>
+        <li><a href="#skills" class="mobile-link text-white/80 hover:text-white transition-colors">기술 스택</a></li>
+        <li><a href="#projects" class="mobile-link text-white/80 hover:text-white transition-colors">프로젝트</a></li>
+        <li><a href="#contact" class="mobile-link text-white/80 hover:text-white transition-colors">연락처</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-bg min-h-screen flex items-center justify-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-20 left-10 w-72 h-72 bg-violet-400 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-indigo-300 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-purple-400 rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative z-10 text-center px-6">
+      <p class="text-indigo-200 text-lg mb-4 fade-in">안녕하세요, 저는</p>
+      <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-4 fade-in">프도</h1>
+      <p class="text-xl md:text-2xl text-indigo-200 mb-2 fade-in">프론트엔드 개발자</p>
+      <p id="typing-text" class="text-indigo-300 text-base md:text-lg mt-2 mb-10 h-7 typing-cursor fade-in"></p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+        <a href="#projects"
+          class="px-8 py-3 bg-white text-indigo-700 font-semibold rounded-full hover:bg-indigo-50 transition-colors shadow-lg shadow-indigo-500/20">
+          프로젝트 보기
+        </a>
+        <a href="#contact"
+          class="px-8 py-3 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-colors">
+          연락하기
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 fade-in">
+        About <span class="text-indigo-600">Me</span>
+      </h2>
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <!-- Avatar Placeholder -->
+        <div class="flex-shrink-0 fade-in">
+          <div class="w-48 h-48 rounded-full bg-gradient-to-br from-indigo-400 to-violet-500 flex items-center justify-center shadow-xl shadow-indigo-200">
+            <svg class="w-24 h-24 text-white/80" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
+        </div>
+        <!-- Bio -->
+        <div class="fade-in">
+          <p class="text-lg text-gray-600 leading-relaxed mb-6">
+            사용자 경험을 최우선으로 생각하는 프론트엔드 개발자 <strong class="text-gray-900">프도</strong>입니다.
+            깔끔한 코드와 직관적인 UI를 통해 사람들이 즐겁게 사용할 수 있는 웹 서비스를 만드는 것을 좋아합니다.
+          </p>
+          <p class="text-lg text-gray-600 leading-relaxed mb-6">
+            React와 Next.js를 중심으로 모던 웹 애플리케이션을 개발하고 있으며,
+            AI 도구를 활용한 생산성 높은 개발 워크플로우에 관심이 많습니다.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <span class="px-4 py-2 bg-indigo-50 text-indigo-600 rounded-full text-sm font-medium">UI/UX 관심</span>
+            <span class="px-4 py-2 bg-violet-50 text-violet-600 rounded-full text-sm font-medium">모던 웹 개발</span>
+            <span class="px-4 py-2 bg-purple-50 text-purple-600 rounded-full text-sm font-medium">AI 활용 개발</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-24 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 fade-in">
+        Tech <span class="text-indigo-600">Stack</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Languages -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow fade-in">
+          <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-gray-900">Languages</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 bg-orange-50 text-orange-600 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">HTML</span>
+            <span class="px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">CSS</span>
+            <span class="px-3 py-1.5 bg-yellow-50 text-yellow-700 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">JavaScript</span>
+            <span class="px-3 py-1.5 bg-sky-50 text-sky-600 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">TypeScript</span>
+          </div>
+        </div>
+        <!-- Frameworks -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow fade-in">
+          <div class="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-gray-900">Frameworks & Libraries</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">Next.js</span>
+            <span class="px-3 py-1.5 bg-cyan-50 text-cyan-600 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">React</span>
+            <span class="px-3 py-1.5 bg-teal-50 text-teal-600 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">Tailwind CSS</span>
+            <span class="px-3 py-1.5 bg-blue-50 text-blue-500 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">Recoil</span>
+            <span class="px-3 py-1.5 bg-purple-50 text-purple-600 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">Redux</span>
+          </div>
+        </div>
+        <!-- Tools -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow fade-in">
+          <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold mb-4 text-gray-900">Tools</h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 bg-indigo-50 text-indigo-600 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">Cursor</span>
+            <span class="px-3 py-1.5 bg-amber-50 text-amber-700 rounded-lg text-sm font-medium hover:-translate-y-1 transition-transform cursor-default">Claude</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 fade-in">
+        Featured <span class="text-indigo-600">Projects</span>
+      </h2>
+      <p class="text-gray-500 text-center mb-16 fade-in">최근 작업한 프로젝트들입니다</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project Card 1 -->
+        <div class="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in">
+          <div class="h-48 bg-gradient-to-br from-indigo-400 to-violet-500 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold mb-2 text-gray-900">프로젝트 1</h3>
+            <p class="text-gray-500 text-sm mb-4 leading-relaxed">프로젝트에 대한 간단한 설명을 여기에 작성합니다. 어떤 문제를 해결했는지 소개해 보세요.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">React</span>
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Next.js</span>
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Tailwind</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium transition-colors">Demo &rarr;</a>
+              <a href="#" class="text-sm text-gray-500 hover:text-gray-700 font-medium transition-colors">GitHub &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project Card 2 -->
+        <div class="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in">
+          <div class="h-48 bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold mb-2 text-gray-900">프로젝트 2</h3>
+            <p class="text-gray-500 text-sm mb-4 leading-relaxed">프로젝트에 대한 간단한 설명을 여기에 작성합니다. 사용한 기술과 결과를 소개해 보세요.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">TypeScript</span>
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Redux</span>
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">REST API</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium transition-colors">Demo &rarr;</a>
+              <a href="#" class="text-sm text-gray-500 hover:text-gray-700 font-medium transition-colors">GitHub &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project Card 3 -->
+        <div class="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in">
+          <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center">
+            <svg class="w-16 h-16 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+            </svg>
+          </div>
+          <div class="p-6">
+            <h3 class="text-lg font-bold mb-2 text-gray-900">프로젝트 3</h3>
+            <p class="text-gray-500 text-sm mb-4 leading-relaxed">프로젝트에 대한 간단한 설명을 여기에 작성합니다. 개발 과정에서 배운 점을 공유해 보세요.</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">React</span>
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Recoil</span>
+              <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded text-xs">Claude API</span>
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="text-sm text-indigo-600 hover:text-indigo-800 font-medium transition-colors">Demo &rarr;</a>
+              <a href="#" class="text-sm text-gray-500 hover:text-gray-700 font-medium transition-colors">GitHub &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-24 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 fade-in">
+        Get In <span class="text-indigo-600">Touch</span>
+      </h2>
+      <p class="text-gray-500 text-center mb-16 fade-in">프로젝트 협업이나 궁금한 점이 있다면 편하게 연락해 주세요</p>
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Contact Info -->
+        <div class="fade-in">
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">이메일</p>
+                <a href="mailto:dlfwnd5532@gmail.com" class="text-gray-900 font-medium hover:text-indigo-600 transition-colors">dlfwnd5532@gmail.com</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-violet-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-violet-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">GitHub</p>
+                <a href="#" class="text-gray-900 font-medium hover:text-indigo-600 transition-colors">github.com/prdo</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                <svg class="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm text-gray-500">LinkedIn</p>
+                <a href="#" class="text-gray-900 font-medium hover:text-indigo-600 transition-colors">linkedin.com/in/prdo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Contact Form -->
+        <form id="contact-form" class="space-y-4 fade-in" onsubmit="handleSubmit(event)">
+          <div>
+            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">이름</label>
+            <input type="text" id="name" name="name" required
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 outline-none transition-all text-sm"
+              placeholder="홍길동" />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">이메일</label>
+            <input type="email" id="email" name="email" required
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 outline-none transition-all text-sm"
+              placeholder="example@email.com" />
+          </div>
+          <div>
+            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">메시지</label>
+            <textarea id="message" name="message" rows="4" required
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 outline-none transition-all text-sm resize-none"
+              placeholder="메시지를 입력해 주세요"></textarea>
+          </div>
+          <button type="submit"
+            class="w-full py-3 bg-indigo-600 text-white font-semibold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">
+            보내기
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-8">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm">&copy; 2026 프도. All rights reserved.</p>
+      <button id="scroll-top" aria-label="맨 위로"
+        class="w-10 h-10 bg-gray-800 hover:bg-indigo-600 rounded-full flex items-center justify-center transition-colors">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+      </button>
+    </div>
+  </footer>
+
+  <script>
+    // --- Mobile Menu Toggle ---
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+      });
+    });
+
+    // --- Navbar Background on Scroll ---
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-indigo-950/90', 'backdrop-blur-md', 'shadow-lg');
+        navbar.classList.remove('bg-transparent');
+      } else {
+        navbar.classList.remove('bg-indigo-950/90', 'backdrop-blur-md', 'shadow-lg');
+        navbar.classList.add('bg-transparent');
+      }
+    });
+
+    // --- Scroll to Top ---
+    document.getElementById('scroll-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // --- Fade-in on Scroll (Intersection Observer) ---
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // --- Typing Animation ---
+    const phrases = [
+      '깔끔한 코드를 작성합니다.',
+      '직관적인 UI를 디자인합니다.',
+      'AI와 함께 개발합니다.',
+      '사용자 경험을 최우선으로 생각합니다.',
+    ];
+    const typingEl = document.getElementById('typing-text');
+    let phraseIdx = 0;
+    let charIdx = 0;
+    let isDeleting = false;
+
+    function typeEffect() {
+      const current = phrases[phraseIdx];
+      if (isDeleting) {
+        typingEl.textContent = current.substring(0, charIdx--);
+      } else {
+        typingEl.textContent = current.substring(0, charIdx++);
+      }
+
+      let delay = isDeleting ? 40 : 80;
+
+      if (!isDeleting && charIdx > current.length) {
+        delay = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIdx < 0) {
+        isDeleting = false;
+        phraseIdx = (phraseIdx + 1) % phrases.length;
+        delay = 500;
+      }
+
+      setTimeout(typeEffect, delay);
+    }
+    typeEffect();
+
+    // --- Contact Form (UI only) ---
+    function handleSubmit(e) {
+      e.preventDefault();
+      alert('메시지가 전송되었습니다! (데모용 알림)');
+      e.target.reset();
+    }
+  </script>
+
+</body>
+</html>
